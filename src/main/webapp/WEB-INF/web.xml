@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+  <servlet>
+    <servlet-name>CategoryServlet</servlet-name>
+    <servlet-class>servlet.CategoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CategoryServlet</servlet-name>
+    <url-pattern>/categoryServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>PropertyServlet</servlet-name>
+    <servlet-class>servlet.PropertyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PropertyServlet</servlet-name>
+    <url-pattern>/propertyServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ProductServlet</servlet-name>
+    <servlet-class>servlet.ProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductServlet</servlet-name>
+    <url-pattern>/productServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ProductImageServlet</servlet-name>
+    <servlet-class>servlet.ProductImageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductImageServlet</servlet-name>
+    <url-pattern>/productImageServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>servlet.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/userServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>servlet.OrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/orderServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ForeServlet</servlet-name>
+    <servlet-class>servlet.ForeServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ForeServlet</servlet-name>
+    <url-pattern>/foreServlet</url-pattern>
+  </servlet-mapping>
+
+<!--  过滤器按顺序执行，所以应该先执行IpFilter，ip满足条件后再执行EncodingFilter，最后执行其他的过滤器-->
+  <filter>
+    <filter-name>IpFilter</filter-name>
+    <filter-class>filter.IpFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>IpFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+<!--  将所有请求统一编码为UTF-8，后续不再需要自己指定编码-->
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+<!--  过滤未登录用户访问需要登录才能访问的页面，直接跳转到登录页面-->
+  <filter>
+    <filter-name>ForeAuthFilter</filter-name>
+    <filter-class>filter.ForeAuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ForeAuthFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>ForeServletFilter</filter-name>
+    <filter-class>filter.ForeServletFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>ForeServletFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>BackServletFilter</filter-name>
+    <filter-class>filter.BackServletFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>BackServletFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+</web-app>
