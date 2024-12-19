@@ -29,6 +29,7 @@ import java.util.*;
 
 public class ForeServlet extends BaseForeServlet {
 
+    // 从DAO中获取数据，然后再将数据传递给 JSP 文件，也就是页面跳转到home.jsp并将图片展示出来
     public String home(HttpServletRequest request, HttpServletResponse response, Page page) {
         List<Category> categories = new CategoryDAO().list();
         new ProductDAO().fill(categories);
@@ -36,7 +37,6 @@ public class ForeServlet extends BaseForeServlet {
         request.setAttribute("categories", categories);
         return "home.jsp";
     }
-
 
     // SHA-256 + 加盐加密
     public String register(HttpServletRequest request, HttpServletResponse response, Page page) {
@@ -70,7 +70,7 @@ public class ForeServlet extends BaseForeServlet {
 
         userDAO.add(user);
 
-        return "@registerSuccess.jsp";
+        return "@registerSuccess.jsp"; // 重定向到注册成功页面
     }
 
     // 发送短信验证码
@@ -237,6 +237,8 @@ public class ForeServlet extends BaseForeServlet {
 
         // 登录成功
         request.getSession().setAttribute("user", user);
+        // 重定向到首页，这里一定要用@forehome，因为要被过滤器拦截，然后加上必要的参数，这样才能正确显示商品的各种图片等等信息
+        // 如果填@home.jsp或home.jsp，那么就是直接重定向回home.jsp，就会缺失这些信息，和在浏览器中直接输入没啥区别，不能正常显示
         return "@forehome";
     }
 

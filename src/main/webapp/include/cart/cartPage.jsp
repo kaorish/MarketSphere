@@ -9,8 +9,8 @@
 
         $("a.deleteOrderItem").click(function () {
             deleteOrderItem = false;
-            var orderItem = $(this).attr("orderItem");
-            deleteOrderItemid = orderItem;
+            var orderItemId = $(this).attr("orderItemId");
+            deleteOrderItemid = orderItemId;
             $("#deleteConfirmModal").modal('show');
         });
         $("button.deleteConfirmButton").click(function () {
@@ -23,10 +23,10 @@
                 var page = "foredeleteOrderItem";
                 $.post(
                     page,
-                    {"orderItem": deleteOrderItemid},
+                    {"orderItemId": deleteOrderItemid},
                     function (result) {
                         if ("success" == result) {
-                            $("tr.cartProductItemTR[orderItem=" + deleteOrderItemid + "]").hide();
+                            $("tr.cartProductItemTR[orderItemId=" + deleteOrderItemid + "]").hide();
                         }
                         else {
                             location.href = "login.jsp";
@@ -126,8 +126,8 @@
             var params = "";
             $(".cartProductItemIfSelected").each(function () {
                 if ("selectit" == $(this).attr("selectit")) {
-                    var orderItem = $(this).attr("orderItem");
-                    params += "&orderItem=" + orderItem;
+                    var orderItemId = $(this).attr("orderItemId");
+                    params += "&orderItemId=" + orderItemId;
                 }
             });
             params = params.substring(1);
@@ -176,13 +176,13 @@
         var sum = 0;
         var totalNumber = 0;
         $("img.cartProductItemIfSelected[selectit='selectit']").each(function () {
-            var orderItem = $(this).attr("orderItem");
-            var price = $(".cartProductItemSmallSumPrice[orderItem=" + orderItem + "]").text();
+            var orderItemId = $(this).attr("orderItemId");
+            var price = $(".cartProductItemSmallSumPrice[orderItemId=" + orderItemId + "]").text();
             price = price.replace(/,/g, "");
             price = price.replace(/￥/g, "");
             sum += Number(price);
 
-            var num = $(".orderItemNumberSetting[orderItem=" + orderItem + "]").val();
+            var num = $(".orderItemNumberSetting[orderItemId=" + orderItemId + "]").val();
             totalNumber += Number(num);
 
         });
@@ -239,9 +239,9 @@
             </thead>
             <tbody>
             <c:forEach items="${orderItems }" var="oi">
-                <tr orderItem="${oi.id}" class="cartProductItemTR">
+                <tr orderItemId="${oi.id}" class="cartProductItemTR">
                     <td>
-                        <img selectit="false" orderItem="${oi.id}" class="cartProductItemIfSelected"
+                        <img selectit="false" orderItemId="${oi.id}" class="cartProductItemIfSelected"
                              src="img/site/cartNotSelected.png">
                         <a style="display:none" href="#nowhere"><img src="img/site/cartSelected.png"></a>
                         <img class="cartProductImg"
@@ -270,7 +270,7 @@
                             <span class="hidden orderItemPromotePrice "
                                   pid="${oi.product.id}">${oi.product.promotePrice}</span>
                             <a pid="${oi.product.id}" class="numberMinus" href="#nowhere">-</a>
-                            <input pid="${oi.product.id}" orderItem="${oi.id}" class="orderItemNumberSetting"
+                            <input pid="${oi.product.id}" orderItemId="${oi.id}" class="orderItemNumberSetting"
                                    autocomplete="off" value="${oi.number}">
                             <a stock="${oi.product.stock}" pid="${oi.product.id}" class="numberPlus"
                                href="#nowhere">+</a>
@@ -278,14 +278,14 @@
 
                     </td>
                     <td>
-							<span class="cartProductItemSmallSumPrice" orderItem="${oi.id}" pid="${oi.product.id}">
+							<span class="cartProductItemSmallSumPrice" orderItemId="${oi.id}" pid="${oi.product.id}">
 							￥<fmt:formatNumber type="number" value="${oi.product.promotePrice*oi.number}"
                                                minFractionDigits="2"/>
 							</span>
 
                     </td>
                     <td>
-                        <a class="deleteOrderItem" orderItem="${oi.id}" href="#nowhere">删除</a>
+                        <a class="deleteOrderItem" orderItemId="${oi.id}" href="#nowhere">删除</a>
                     </td>
                 </tr>
             </c:forEach>
