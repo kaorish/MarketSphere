@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Context>
+    <Resource name="MarketSphereConn"
+      auth="Container"
+      type="javax.sql.DataSource"
+      username="root"
+      password="@sun005222"
+      maxIdle="30"
+      maxWait="10000"
+      maxActive="100"
+      driverClassName="com.mysql.jdbc.Driver"
+      url="jdbc:mysql://localhost:3306/tmall"
+    />
+</Context>

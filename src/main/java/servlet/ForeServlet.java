@@ -12,7 +12,6 @@ import util.Page;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.net.http.HttpResponse;
 
 
 import java.io.BufferedReader;
@@ -166,47 +165,15 @@ public class ForeServlet extends BaseForeServlet {
 
     private boolean sendSms(String mobile, String code) {
         // 调用短信发送服务
-        // 这里假设发送成功
         // 接收验证码的11位手机号
         String phone = mobile;
-//
-//        // 验证码
+
+        // 验证码
         String variables = code;
-//
-//        // 验证码模版id
+        // 验证码模版id
         String templateId = "CST_ptdie100";
-//        // appId
-//        String appId = "YOUR_APP_ID";
-//        // appKey
-//        String appKey = "YOUR_APP_KEY";
-//
-//        // API地址
-//        String apiUrl = "https://dfsns.market.alicloudapi.com/data/send_sms";
-//
+
         boolean success = false;
-//
-//        try {
-//            URL url = new URL(apiUrl + "?phone=" + phone + "&templateId=" + templateId + "&appId=" + appId + "&appKey=" + appKey + "&variables=" + variables);
-//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//            conn.setRequestMethod("GET");
-//
-//            BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//            StringBuilder response = new StringBuilder();
-//            String line;
-//            while ((line = rd.readLine()) != null) {
-//                response.append(line);
-//            }
-//            rd.close();
-//            // 解析短信服务的响应response，根据返回结果判断是否发送成功
-//            // 成功{"returnStatus":"1 ","message":"成功","remainPoint":"241","taskId":"3313746","successCounts":"1"}
-//            // 失败{"returnStatus":"0","message":"参数错误","remainPoint":null,"taskId":null,"successCounts":null}
-//            if (response.toString().contains("成功")) success = true;
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        // 成功就返回true，失败返回false
-//        return success;
 
         String host = "https://dfsns.market.alicloudapi.com";
         String path = "/data/send_sms";
