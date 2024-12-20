@@ -32,18 +32,30 @@
             <c:forEach items="${thecs}" var="category">
                 <tr>
                     <td>${category.id}</td>
-                    <td><img height="40px" src="img/category/${category.id}.jpg"></td>
-                    <td>${category.name}</td>
-
-                    <td><a href="admin_property_list?cid=${category.id}"><span
-                            class="glyphicon glyphicon-th-list"></span></a>
+                    <td>
+                        <img height="40px" src="img/category/${category.id}.jpg">
                     </td>
-                    <td><a href="admin_product_list?cid=${category.id}"><span
-                            class="glyphicon glyphicon-shopping-cart"></span></a></td>
-                    <td><a href="admin_category_edit?id=${category.id}"><span
-                            class="glyphicon glyphicon-edit"></span></a></td>
-                    <td><a deleteLink="true" href="admin_category_delete?id=${category.id}"><span
-                            class=" 	glyphicon glyphicon-trash"></span></a></td>
+                    <td>${category.name}</td>
+                    <td>
+                        <a href="admin_property_list?cid=${category.id}">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="admin_product_list?cid=${category.id}">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="admin_category_edit?id=${category.id}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a deleteLink="true" href="admin_category_delete?id=${category.id}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

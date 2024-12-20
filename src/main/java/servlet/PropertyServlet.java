@@ -56,17 +56,39 @@ public class PropertyServlet extends BaseBackServlet {
 
     @Override
     public String list(HttpServletRequest request, HttpServletResponse response, Page page) {
-        int cid = Integer.parseInt(request.getParameter("cid"));
+        String cidStr = request.getParameter("cid");
+        System.out.println("cidStr: " + cidStr);
+        if (cidStr == null || cidStr.isEmpty()) {
+            throw new IllegalArgumentException("cid parameter is missing");
+        }
+
+        int cid = Integer.parseInt(cidStr);
         Category category = categoryDAO.get(cid);
+        System.out.println("category:" + category.getId());
+        System.out.println("category:" + category.getName());
+        if (category == null) {
+            throw new RuntimeException("Category with id " + cid + " not found!");
+        }
+
         List<Property> ps = propertyDAO.list(cid, page.getStart(), page.getCount());
         int total = propertyDAO.getTotal(cid);
         page.setTotal(total);
+        System.out.println("set total: " + page.getTotal());
+
         page.setParam("&cid=" + category.getId());
+        System.out.println("set param: " + page.getParam());
 
         request.setAttribute("ps", ps);
-        request.setAttribute("c", category);
+        System.out.println("set ps: " + ps.size());
+
+        request.setAttribute("category", category);
+        System.out.println("set category name: " + category.getName());
+        System.out.println("set category id: " + category.getId());
+
         request.setAttribute("page", page);
+        System.out.println("set page: " + page.getCount());
 
         return "admin/listProperty.jsp";
     }
+
 }
