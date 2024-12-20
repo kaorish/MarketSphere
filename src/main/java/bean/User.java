@@ -1,9 +1,19 @@
 package bean;
 
 public class User {
+    private int id;
     private String password;
     private String name;
     private String salt;
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public String getSalt() {
         return salt;
@@ -12,8 +22,6 @@ public class User {
     public void setSalt(String salt) {
         this.salt = salt;
     }
-
-    private int id;
 
     public int getId() {
         return id;
@@ -39,6 +47,7 @@ public class User {
         this.name = name;
     }
 
+    // 匿名名称，用于评论显示
     public String getAnonymousName() {
         if (null == name)
             return null;
@@ -54,8 +63,6 @@ public class User {
             categories[i] = '*';
         }
         return new String(categories);
-
-
     }
 
 }

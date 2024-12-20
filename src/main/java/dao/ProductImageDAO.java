@@ -36,7 +36,7 @@ public class ProductImageDAO {
 
 
         String sql = "insert into ProductImage values(null,?,?)";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, bean.getProduct().getId());
             ps.setString(2, bean.getType());
             ps.execute();
@@ -105,7 +105,7 @@ public class ProductImageDAO {
 
         String sql = "select * from ProductImage where pid =? and type =? order by id desc limit ?,? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, p.getId());
             ps.setString(2, type);

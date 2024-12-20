@@ -42,6 +42,7 @@ public class ForeServlet extends BaseForeServlet {
     public String register(HttpServletRequest request, HttpServletResponse response, Page page) {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
+        String phone = request.getParameter("phone");
 
         // 转义 HTML，防止 XSS 攻击
         name = HtmlUtils.htmlEscape(name);
@@ -66,6 +67,7 @@ public class ForeServlet extends BaseForeServlet {
         user.setName(name);
         user.setPassword(encryptedPassword);
         user.setSalt(salt); // 将盐值存储到数据库
+        user.setPhone(phone);
         System.out.println("Encrypted Password: " + encryptedPassword);
 
         userDAO.add(user);
@@ -74,15 +76,14 @@ public class ForeServlet extends BaseForeServlet {
     }
 
     // 发送短信验证码
-
     public String sendCode(HttpServletRequest request, HttpServletResponse response, Page page) {
         response.setContentType("application/json;charset=UTF-8");
-        String mobile = request.getParameter("mobile");
-        System.out.println("Mobile: " + mobile);
+        String phone = request.getParameter("phone");
+        System.out.println("Phone: " + phone);
         try {
             // 生成验证码
             String code = generateVerificationCode();
-            boolean success = sendSms(mobile, code); // 假设成功发送短信
+            boolean success = sendSms(phone, code); // 假设成功发送短信
 
             if (success) {
                 // 将验证码存入 session
@@ -163,11 +164,7 @@ public class ForeServlet extends BaseForeServlet {
         return code;
     }
 
-    private boolean sendSms(String mobile, String code) {
-        // 调用短信发送服务
-        // 接收验证码的11位手机号
-        String phone = mobile;
-
+    private boolean sendSms(String phone, String code) {
         // 验证码
         String variables = code;
         // 验证码模版id

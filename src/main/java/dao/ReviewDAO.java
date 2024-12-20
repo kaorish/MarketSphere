@@ -52,7 +52,7 @@ public class ReviewDAO {
 
 
         String sql = "insert into Review values(null,?,?,?,?)";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, bean.getContent());
             ps.setInt(2, bean.getUser().getId());
@@ -75,7 +75,7 @@ public class ReviewDAO {
     public void update(Review bean) {
 
         String sql = "update Review set content= ?, uid=?, pid=? , createDate = ? where id = ?";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, bean.getContent());
             ps.setInt(2, bean.getUser().getId());
             ps.setInt(3, bean.getProduct().getId());
@@ -145,7 +145,7 @@ public class ReviewDAO {
     public int getCount(int pid) {
         String sql = "select count(*) from Review where pid = ? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, pid);
             ResultSet rs = ps.executeQuery();
@@ -165,7 +165,7 @@ public class ReviewDAO {
 
         String sql = "select * from Review where pid = ? order by id desc limit ?,? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, pid);
             ps.setInt(2, start);
@@ -205,7 +205,7 @@ public class ReviewDAO {
 
         String sql = "select * from Review where content = ? and pid = ?";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, content);
             ps.setInt(2, pid);
 

@@ -9,6 +9,6 @@
       maxWait="10000"
       maxActive="100"
       driverClassName="com.mysql.jdbc.Driver"
-      url="jdbc:mysql://localhost:3306/tmall"
+      url="jdbc:mysql://localhost:3306/marketsphere"
     />
 </Context>

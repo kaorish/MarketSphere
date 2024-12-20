@@ -29,7 +29,7 @@ public class CategoryDAO {
     public void add(Category bean) {
 
         String sql = "insert into category values(null,?)";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, bean.getName());
 
@@ -49,7 +49,7 @@ public class CategoryDAO {
     public void update(Category bean) {
 
         String sql = "update category set name= ? where id = ?";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, bean.getName());
             ps.setInt(2, bean.getId());
@@ -109,7 +109,7 @@ public class CategoryDAO {
 
         String sql = "select * from Category order by id desc limit ?,? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, start);
             ps.setInt(2, count);

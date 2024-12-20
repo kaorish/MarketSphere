@@ -1,24 +1,12 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" import="java.util.*" %>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri= "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@include file="../include/admin/adminHeader.jsp" %>
 <%@include file="../include/admin/adminNavigator.jsp" %>
 
-<script>
-    $(function () {
 
-        $("#addForm").submit(function () {
-            if (!checkEmpty("name", "分类名称"))
-                return false;
-            if (!checkEmpty("categoryPic", "分类图片"))
-                return false;
-            return true;
-        });
-    });
-
-</script>
 
 <title>分类管理</title>
 
@@ -94,3 +82,17 @@
 </div>
 
 <%@include file="../include/admin/adminFooter.jsp" %>
+
+<script>
+    $(function () {
+
+        $("#addForm").submit(function () {
+            if (!checkEmpty("name", "分类名称"))
+                return false;
+            if (!checkEmpty("categoryPic", "分类图片"))
+                return false;
+            return true;
+        });
+    });
+
+</script>

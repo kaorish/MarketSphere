@@ -112,6 +112,7 @@ public class CategoryServlet extends BaseBackServlet {
     }
 
 
+    // 转发至分类管理页面
     public String list(HttpServletRequest request, HttpServletResponse response, Page page) {
         List<Category> categories = categoryDAO.list(page.getStart(), page.getCount());
         int total = categoryDAO.getTotal();
@@ -120,6 +121,6 @@ public class CategoryServlet extends BaseBackServlet {
         request.setAttribute("thecs", categories);
         request.setAttribute("page", page);
 
-        return "admin/listCategory.jsp"; // 因为只有后台才会查看所有种类，所以调用这个方法的一定是后台，所以直接返回“admin/listCategory.jsp”即可
+        return "admin/listCategory.jsp"; // 因为只有后台才会查看所有种类，所以调用这个方法的一定是后台，所以直接返回“admin/listCategory.jsp”即可，而且是服务器内部直接跳转
     }
 }

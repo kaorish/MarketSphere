@@ -31,7 +31,7 @@ public class PropertyValueDAO {
     public void add(PropertyValue bean) {
 
         String sql = "insert into PropertyValue values(null,?,?,?)";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, bean.getProduct().getId());
             ps.setInt(2, bean.getProperty().getId());
@@ -52,7 +52,7 @@ public class PropertyValueDAO {
     public void update(PropertyValue bean) {
 
         String sql = "update PropertyValue set pid= ?, ptid=?, value=?  where id = ?";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, bean.getProduct().getId());
             ps.setInt(2, bean.getProperty().getId());
             ps.setString(3, bean.getValue());
@@ -148,7 +148,7 @@ public class PropertyValueDAO {
 
         String sql = "select * from PropertyValue order by id desc limit ?,? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, start);
             ps.setInt(2, count);
@@ -197,7 +197,7 @@ public class PropertyValueDAO {
 
         String sql = "select * from PropertyValue where pid = ? order by ptid desc";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, pid);
 

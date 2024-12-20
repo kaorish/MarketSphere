@@ -31,7 +31,7 @@ public class PropertyDAO {
 
 
         String sql = "insert into Property values(null,?,?)";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, bean.getCategory().getId());
             ps.setString(2, bean.getName());
@@ -51,7 +51,7 @@ public class PropertyDAO {
     public void update(Property bean) {
 
         String sql = "update Property set cid= ?, name=? where id = ?";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
 
             ps.setInt(1, bean.getCategory().getId());
@@ -85,7 +85,7 @@ public class PropertyDAO {
 
         String sql = "select * from Property where name = ? and cid = ?";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, name);
             ps.setInt(2, cid);
 
@@ -143,7 +143,7 @@ public class PropertyDAO {
 
         String sql = "select * from Property where cid = ? order by id desc limit ?,? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, cid);
             ps.setInt(2, start);

@@ -15,19 +15,6 @@
 <html>
 <head>
     <title>属性管理</title>
-
-    <script>
-        $(function () {
-            $("#addForm").submit(function () {
-                if (checkEmpty("name", "属性名称")) {
-                    return true;
-                }
-                return false;
-
-            });
-
-        });
-    </script>
 </head>
 <body>
 <div class="workingArea">
@@ -89,5 +76,17 @@
 </div>
 
 <%@include file="../include/admin/adminFooter.jsp" %>
+
+<script>
+    $(function () {
+        $("#addForm").submit(function () {
+            if (checkEmpty("name", "属性名称")) {
+                return true;
+            }
+            return false;
+        });
+    });
+</script>
+
 </body>
 </html>

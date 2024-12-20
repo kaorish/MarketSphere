@@ -34,7 +34,7 @@ public class OrderItemDAO {
 
 
         String sql = "insert into OrderItem values(null,?,?,?,?)";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, bean.getProduct().getId());
 
@@ -62,7 +62,7 @@ public class OrderItemDAO {
     public void update(OrderItem bean) {
 
         String sql = "update OrderItem set pid= ?, oid=?, uid=?,number=?  where id = ?";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
 
             ps.setInt(1, bean.getProduct().getId());
@@ -142,7 +142,7 @@ public class OrderItemDAO {
         //oid=-1说明这个OrderItem还没有对应的订单，所以显示在购物车。当oid有值得时候，就不在购物车了。
         String sql = "select * from OrderItem where uid = ? and oid=-1 order by id desc limit ?,? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, uid);
             ps.setInt(2, start);
@@ -189,7 +189,7 @@ public class OrderItemDAO {
 
         String sql = "select * from OrderItem where oid = ? order by id desc limit ?,? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, oid);
             ps.setInt(2, start);
@@ -263,7 +263,7 @@ public class OrderItemDAO {
 
         String sql = "select * from OrderItem where pid = ? order by id desc limit ?,? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, pid);
             ps.setInt(2, start);

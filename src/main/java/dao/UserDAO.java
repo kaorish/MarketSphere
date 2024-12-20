@@ -10,7 +10,23 @@ import java.util.List;
 
 public class UserDAO {
 
+    private User getUser(ResultSet rs) throws SQLException {
+        User bean = new User();
+        int id = rs.getInt("id");
+        bean.setId(id);
+        String name = rs.getString("name");
+        bean.setName(name);
+        String password = rs.getString("password");
+        bean.setPassword(password);
+        String salt = rs.getString("salt");
+        bean.setSalt(salt);
+        String phone = rs.getString("phone");
+        bean.setPhone(phone);
+        return bean;
+    }
+
     public int getTotal() {
+
         int total = 0;
         try (Connection c = DBUtil.getConnection(); Statement s = c.createStatement()) {
 
@@ -29,12 +45,13 @@ public class UserDAO {
 
     public void add(User bean) {
 
-        String sql = "insert into user values(null ,? ,?, ?)";
+        String sql = "insert into user values(null ,? ,?, ?, ?)";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, bean.getName());
             ps.setString(2, bean.getPassword());
             ps.setString(3, bean.getSalt());
+            ps.setString(4, bean.getPhone());
 
             ps.execute();
 
@@ -51,12 +68,13 @@ public class UserDAO {
 
     public void update(User bean) {
 
-        String sql = "update user set name= ? , password = ? where id = ? ";
+        String sql = "update user set name= ? , password = ?, phone = ? where id = ? ";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, bean.getName());
             ps.setString(2, bean.getPassword());
             ps.setInt(3, bean.getId());
+            ps.setString(4, bean.getPhone());
 
             ps.execute();
 
@@ -81,6 +99,7 @@ public class UserDAO {
         }
     }
 
+    // 方法重载，提供多个获取用户的方法
     public User get(int id) {
         User bean = null;
 
@@ -91,18 +110,46 @@ public class UserDAO {
             ResultSet rs = s.executeQuery(sql);
 
             if (rs.next()) {
-                bean = new User();
-                String name = rs.getString("name");
-                bean.setName(name);
-                String password = rs.getString("password");
-                bean.setPassword(password);
-                String salt = rs.getString("salt");
-                bean.setSalt(salt);
-                bean.setId(id);
+                bean = getUser(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bean;
+    }
+
+    public User get(String name) {
+        User bean = null;
+
+        String sql = "select * from User where name = ?";
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                bean = getUser(rs);
             }
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bean;
+    }
 
+    public User get(String name, String password) {
+        User bean = null;
+
+        String sql = "select * from User where name = ? and password=?";
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, name);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                bean = getUser(rs);
+            }
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return bean;
@@ -125,21 +172,10 @@ public class UserDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                User bean = new User();
-                int id = rs.getInt(1);
-
-                String name = rs.getString("name");
-                bean.setName(name);
-                String password = rs.getString("password");
-                bean.setPassword(password);
-                String salt = rs.getString("salt");
-                bean.setSalt(salt);
-
-                bean.setId(id);
+                User bean = getUser(rs);
                 beans.add(bean);
             }
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
         return beans;
@@ -150,55 +186,4 @@ public class UserDAO {
         return user != null;
 
     }
-
-    public User get(String name) {
-        User bean = null;
-
-        String sql = "select * from User where name = ?";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, name);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                bean = new User();
-                int id = rs.getInt("id");
-                bean.setName(name);
-                String password = rs.getString("password");
-                bean.setPassword(password);
-                String salt = rs.getString("salt");
-                bean.setSalt(salt);
-                bean.setId(id);
-            }
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-        return bean;
-    }
-
-    public User get(String name, String password) {
-        User bean = null;
-
-        String sql = "select * from User where name = ? and password=? and salt = ?";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, name);
-            ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                bean = new User();
-                int id = rs.getInt("id");
-                bean.setName(name);
-                bean.setPassword(password);
-                bean.setId(id);
-            }
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-        return bean;
-    }
-
 }

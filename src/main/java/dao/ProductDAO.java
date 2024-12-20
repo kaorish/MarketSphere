@@ -33,7 +33,7 @@ public class ProductDAO {
     public void add(Product bean) {
 
         String sql = "insert into Product values(null,?,?,?,?,?,?,?)";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, bean.getName());
             ps.setString(2, bean.getSubTitle());
@@ -58,7 +58,7 @@ public class ProductDAO {
     public void update(Product bean) {
 
         String sql = "update Product set name= ?, subTitle=?, originalPrice=?,promotePrice=?,stock=?, cid = ?, createDate=? where id = ?";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, bean.getName());
             ps.setString(2, bean.getSubTitle());
@@ -138,7 +138,7 @@ public class ProductDAO {
         Category category = new CategoryDAO().get(cid);
         String sql = "select * from Product where cid = ? order by id desc limit ?,? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, cid);
             ps.setInt(2, start);
             ps.setInt(3, count);
@@ -182,7 +182,7 @@ public class ProductDAO {
 
         String sql = "select * from Product limit ?,? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setInt(1, start);
             ps.setInt(2, count);
@@ -272,7 +272,7 @@ public class ProductDAO {
             return beans;
         String sql = "select * from Product where name like ? limit ?,? ";
 
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, "%" + keyword.trim() + "%");
             ps.setInt(2, start);
             ps.setInt(3, count);

@@ -75,7 +75,7 @@
         $.ajax({
             type: "POST",
             url: "/foresendCode", // 确保路径与后端一致
-            data: { mobile: phone },
+            data: { phone: phone },
             dataType: "json",
             success: function (data) {
                 if (data.success) {

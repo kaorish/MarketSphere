@@ -292,9 +292,9 @@ a.productItemDescLink {
     height: 66px;
 }
 
-/*div.productItem:hover {*/
-/*    border: 1px solid #C40000;*/
-/*}*/
+div.productItem:hover {
+    border: 1px solid #C40000;
+}
 
 div.productItem span.productItemDesc {
     font-size: 12px;
@@ -320,10 +320,10 @@ div.productItem img {
     height: 190px;
 }
 
-/*div.productItem img:hover {*/
-/*    opacity: 0.7;*/
-/*    filter: alpha(opacity=70);*/
-/*}*/
+div.productItem img:hover {
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+}
 
 img.endpng {
     display: block;
