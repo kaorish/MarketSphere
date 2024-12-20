@@ -1,78 +1,13 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
-<script>
-    var deleteOrder = false;
-    var deleteOrderid = 0;
-
-    $(function () {
-        $("a[orderStatus]").click(function () {
-            var orderStatus = $(this).attr("orderStatus");
-            if ('all' == orderStatus) {
-                $("table[orderStatus]").show();
-            }
-            else {
-                $("table[orderStatus]").hide();
-                $("table[orderStatus=" + orderStatus + "]").show();
-            }
-
-            $("div.orderType div").removeClass("selectedOrderType");
-            $(this).parent("div").addClass("selectedOrderType");
-        });
-
-        $("a.deleteOrderLink").click(function () {
-            deleteOrderid = $(this).attr("oid");
-            deleteOrder = false;
-            $("#deleteConfirmModal").modal("show");
-        });
-
-        $("button.deleteConfirmButton").click(function () {
-            deleteOrder = true;
-            $("#deleteConfirmModal").modal('hide');
-        });
-
-        $('#deleteConfirmModal').on('hidden.bs.modal', function (e) {
-            if (deleteOrder) {
-                var page = "foredeleteOrder";
-                $.post(
-                    page,
-                    {"oid": deleteOrderid},
-                    function (result) {
-                        if ("success" == result) {
-                            $("table.orderListItemTable[oid=" + deleteOrderid + "]").hide();
-                        }
-                        else {
-                            location.href = "login.jsp";
-                        }
-                    }
-                );
-
-            }
-        });
-
-        $(".ask2delivery").click(function () {
-            var link = $(this).attr("link");
-            $(this).hide();
-            page = link;
-            $.ajax({
-                url: page,
-                success: function (result) {
-                    alert("卖家已秒发，刷新当前页面，即可进行确认收货")
-                }
-            });
-
-        });
-    });
-
-</script>
-
 <div class="boughtDiv">
     <div class="orderType">
-        <div class="selectedOrderType"><a orderStatus="all" href="#nowhere">所有订单</a></div>
-        <div><a orderStatus="waitPay" href="#nowhere">待付款</a></div>
-        <div><a orderStatus="waitDelivery" href="#nowhere">待发货</a></div>
-        <div><a orderStatus="waitConfirm" href="#nowhere">待收货</a></div>
-        <div><a orderStatus="waitReview" href="#nowhere" class="noRightborder">待评价</a></div>
+        <div class="selectedOrderType"><a orderStatus="all" href="#">所有订单</a></div>
+        <div><a orderStatus="waitPay" href="#">待付款</a></div>
+        <div><a orderStatus="waitDelivery" href="#">待发货</a></div>
+        <div><a orderStatus="waitConfirm" href="#">待收货</a></div>
+        <div><a orderStatus="waitReview" href="#" class="noRightborder">待评价</a></div>
         <div class="orderTypeLastOne"><a class="noRightborder"> </a></div>
     </div>
     <div style="clear:both"></div>
@@ -98,15 +33,12 @@
                         <span>订单号: ${o.orderCode}
                     </span>
                     </td>
-                    <td colspan="2"><img width="13px" src="img/site/orderItemTmall.png">天猫商场</td>
+                    <td colspan="2"></td>
                     <td colspan="1">
-                        <a class="wangwanglink" href="#nowhere">
-                            <div class="orderItemWangWangGif"></div>
-                        </a>
 
                     </td>
                     <td class="orderItemDeleteTD">
-                        <a class="deleteOrderLink" oid="${o.id}" href="#nowhere">
+                        <a class="deleteOrderLink" oid="${o.id}" href="#">
                             <span class="orderListItemDelete glyphicon glyphicon-trash"></span>
                         </a>
 
@@ -187,3 +119,68 @@
     </div>
 
 </div>
+
+<script>
+    var deleteOrder = false;
+    var deleteOrderid = 0;
+
+    $(function () {
+        $("a[orderStatus]").click(function () {
+            var orderStatus = $(this).attr("orderStatus");
+            if ('all' == orderStatus) {
+                $("table[orderStatus]").show();
+            }
+            else {
+                $("table[orderStatus]").hide();
+                $("table[orderStatus=" + orderStatus + "]").show();
+            }
+
+            $("div.orderType div").removeClass("selectedOrderType");
+            $(this).parent("div").addClass("selectedOrderType");
+        });
+
+        $("a.deleteOrderLink").click(function () {
+            deleteOrderid = $(this).attr("oid");
+            deleteOrder = false;
+            $("#deleteConfirmModal").modal("show");
+        });
+
+        $("button.deleteConfirmButton").click(function () {
+            deleteOrder = true;
+            $("#deleteConfirmModal").modal('hide');
+        });
+
+        $('#deleteConfirmModal').on('hidden.bs.modal', function (e) {
+            if (deleteOrder) {
+                var page = "foredeleteOrder";
+                $.post(
+                    page,
+                    {"oid": deleteOrderid},
+                    function (result) {
+                        if ("success" == result) {
+                            $("table.orderListItemTable[oid=" + deleteOrderid + "]").hide();
+                        }
+                        else {
+                            location.href = "login.jsp";
+                        }
+                    }
+                );
+
+            }
+        });
+
+        $(".ask2delivery").click(function () {
+            var link = $(this).attr("link");
+            $(this).hide();
+            page = link;
+            $.ajax({
+                url: page,
+                success: function (result) {
+                    alert("卖家已秒发，刷新当前页面，即可进行确认收货")
+                }
+            });
+
+        });
+    });
+
+</script>

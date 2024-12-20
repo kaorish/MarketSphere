@@ -59,30 +59,6 @@
             <a href="#">知识产权</a>
             <a href="#"> 廉正举报 </a>
         </div>
-        <div class="white_link">
-            <a href="#"> 阿里巴巴集团</a><span class="slash">|</span>
-            <a href="#"> 淘宝网</a><span class="slash">|</span>
-            <a href="#">天猫 </a><span class="slash">|</span>
-            <a href="#"> 聚划算</a><span class="slash">|</span>
-            <a href="#">全球速卖通</a><span class="slash">|</span>
-            <a href="#">阿里巴巴国际交易市场</a><span class="slash">|</span>
-            <a href="#">1688</a><span class="slash">|</span>
-            <a href="#">阿里妈妈</a><span class="slash">|</span>
-            <a href="#"> 阿里旅行·去啊 </a><span class="slash">|</span>
-            <a href="#"> 阿里云计算 </a><span class="slash">|</span>
-            <a href="#"> 阿里通信 </a><span class="slash">|</span>
-            <a href="#"> YunOS </a><span class="slash">|</span>
-            <a href="#"> 阿里旅行·去啊 </a><span class="slash">|</span>
-            <a href="#"> 万网 </a><span class="slash">|</span>
-            <a href="#"> 高德 </a><span class="slash">|</span>
-            <a href="#"> 优视 </a><span class="slash">|</span>
-            <a href="#"> 友盟 </a><span class="slash">|</span>
-            <a href="#"> 虾米 </a><span class="slash">|</span>
-            <a href="#"> 天天动听 </a><span class="slash">|</span>
-            <a href="#"> 来往 </a><span class="slash">|</span>
-            <a href="#"> 钉钉 </a><span class="slash">|</span>
-            <a href="#"> 支付宝 </a>
-        </div>
 
         <div class="license">
             <span>增值电信业务经营许可证： 浙B2-20110446</span>
