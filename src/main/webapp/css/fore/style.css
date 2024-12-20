@@ -614,7 +614,7 @@ div.productUnit a.productLink:hover {
     color: #C40000;
 }
 
-div.productUnit a.tmallLink {
+div.productUnit a.marketSphereLink {
     margin: 10px 0px;
     color: #999999;
     /*font: 0.8em;*/
@@ -622,7 +622,7 @@ div.productUnit a.tmallLink {
     text-decoration: underline;
 }
 
-div.productUnit a.tmallLink:hover {
+div.productUnit a.marketSphereLink:hover {
     text-decoration: underline;
     color: #C40000;
 }
@@ -1158,7 +1158,7 @@ table.addressTable td textarea {
     width: 400px;
 }
 
-img.tmallbuy {
+img.marketSpherebuy {
     width: 15px;
 }
 

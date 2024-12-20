@@ -2,12 +2,14 @@
          pageEncoding="UTF-8" isELIgnored="false" %>
 
 <div class="categoryMenu">
-    <c:forEach items="${categories}" var="category">
-        <div cid="${category.id}" class="eachCategory">
-            <span class="glyphicon glyphicon-link"></span>
-            <a href="forecategory?cid=${category.id}">
-                    ${category.name}
-            </a>
-        </div>
+    <c:forEach items="${categories}" var="category" varStatus="st">
+        <c:if test="${st.count<=17}">
+            <div cid="${category.id}" class="eachCategory">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="forecategory?cid=${category.id}">
+                        ${category.name}
+                </a>
+            </div>
+        </c:if>
     </c:forEach>
 </div>

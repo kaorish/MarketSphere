@@ -28,7 +28,7 @@
                 </div>
                 <span class="text-danger"></span><br><br>
                 <div>
-                    <a href="#nowhere">忘记登录密码</a>
+                    <a href="#">忘记登录密码</a>
                     <a href="register.jsp" class="pull-right">免费注册</a>
                 </div>
                 <div style="margin-top:20px">

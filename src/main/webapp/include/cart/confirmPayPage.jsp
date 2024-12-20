@@ -11,12 +11,12 @@
             <fmt:formatDate value="${o.payDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
         </div>
         <div class="confirmPayTime3">
-            yyyy-MM-dd HH:mm:ss
+            <fmt:formatDate value="${o.deliveryDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
         </div>
 
     </div>
     <div class="confirmPayOrderInfoDiv">
-        <div class="confirmPayOrderInfoText">我已收到货，同意支付宝付款</div>
+        <div class="confirmPayOrderInfoText">我已收到货，同意付款</div>
     </div>
     <div class="confirmPayOrderItemDiv">
         <div class="confirmPayOrderItemText">订单信息</div>
@@ -32,7 +32,7 @@
                 <tr>
                     <td><img width="50px" src="img/productSingle_middle/${oi.product.firstProductImage.id}.jpg"></td>
                     <td class="confirmPayOrderItemProductLink">
-                        <a href="#nowhere">${oi.product.name}</a>
+                        <a href="#">${oi.product.name}</a>
                     </td>
                     <td>￥<fmt:formatNumber type="number" value="${oi.product.originalPrice}"
                                            minFractionDigits="2"/></td>
@@ -56,11 +56,11 @@
         <table class="confirmPayOrderDetailTable">
             <tr>
                 <td>订单编号：</td>
-                <td>${o.orderCode} <img width="23px" src="img/site/confirmOrderTmall.png"></td>
+                <td>${o.orderCode}</td>
             </tr>
             <tr>
                 <td>卖家昵称：</td>
-                <td>天猫商铺 <span class="confirmPayOrderDetailWangWangGif"></span></td>
+                <td>MarketSphere商铺</td>
             </tr>
             <tr>
                 <td>收货信息：</td>
@@ -74,7 +74,7 @@
 
     </div>
     <div class="confirmPayButtonDiv">
-        <div class="confirmPayWarning">请收到货后，再确认收货！否则您可能钱货两空！</div>
+        <div class="confirmPayWarning">请收到货后，再确认收货！</div>
         <a href="foreorderConfirmed?oid=${o.id}">
             <button class="confirmPayButton">确认支付</button>
         </a>

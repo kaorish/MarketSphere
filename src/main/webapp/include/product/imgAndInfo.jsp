@@ -161,7 +161,7 @@
             </div>
             <div class="productPriceDiv">
                 <div class="gouwujuanDiv"><img height="16px" src="img/site/gouwujuan.png">
-                    <span> 全天猫实物商品通用</span>
+                    <span> 全MarketSphere实物商品通用</span>
 
                 </div>
                 <div class="originalDiv">
@@ -192,14 +192,14 @@
                 <input class="productNumberSetting" type="text" value="1">
                 </span>
                 <span class="arrow">
-                    <a href="#nowhere" class="increaseNumber">
+                    <a href="#" class="increaseNumber">
                     <span class="updown">
                             <img src="img/site/increase.png">
                     </span>
                     </a>
 
                     <span class="updownMiddle"> </span>
-                    <a href="#nowhere" class="decreaseNumber">
+                    <a href="#" class="decreaseNumber">
                     <span class="updown">
                             <img src="img/site/decrease.png">
                     </span>
@@ -213,10 +213,10 @@
         <div class="serviceCommitment">
             <span class="serviceCommitmentDesc">服务承诺</span>
             <span class="serviceCommitmentLink">
-                <a href="#nowhere">正品保证</a>
-                <a href="#nowhere">极速退款</a>
-                <a href="#nowhere">赠运费险</a>
-                <a href="#nowhere">七天无理由退换</a>
+                <a href="#">正品保证</a>
+                <a href="#">极速退款</a>
+                <a href="#">赠运费险</a>
+                <a href="#">七天无理由退换</a>
             </span>
         </div>
 
@@ -224,7 +224,7 @@
             <a class="buyLink" href="forebuyone?pid=${p.id}">
                 <button class="buyButton">立即购买</button>
             </a>
-            <a href="#nowhere" class="addCartLink">
+            <a href="#" class="addCartLink">
                 <button class="addCartButton"><span class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button>
             </a>
         </div>

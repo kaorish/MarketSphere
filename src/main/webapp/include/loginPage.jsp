@@ -1,31 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
-<script>
-
-    $(function () {
-        <c:if test="${!empty msg}">
-        $("span.errorMessage").html("${msg}");
-        $("div.loginErrorMessageDiv").show();
-        </c:if>
-
-        $("form.loginForm").submit(function () {
-            if (0 == $("#name").val().length || 0 == $("#password").val().length) {
-                $("span.errorMessage").html("请输入账号密码");
-                $("div.loginErrorMessageDiv").show();
-                return false;
-            }
-            return true;
-        });
-
-        $("form.loginForm input").keyup(function () {
-            $("div.loginErrorMessageDiv").hide();
-        });
-
-        var left = window.innerWidth / 2 + 162;
-        $("div.loginSmallDiv").css("left", left);
-    })
-</script>
 
 <div id="loginDiv" style="position: relative">
 
@@ -61,7 +36,7 @@
             <span class="text-danger"></span><br><br>
 
             <div>
-                <a class="notImplementLink" href="#nowhere">忘记登录密码</a>
+                <a class="notImplementLink" href="#">忘记登录密码</a>
                 <a href="register.jsp" class="pull-right">免费注册</a>
             </div>
             <div style="margin-top:20px">
@@ -71,3 +46,29 @@
     </form>
 
 </div>
+
+<script>
+
+    $(function () {
+        <c:if test="${!empty msg}">
+        $("span.errorMessage").html("${msg}");
+        $("div.loginErrorMessageDiv").show();
+        </c:if>
+
+        $("form.loginForm").submit(function () {
+            if (0 == $("#name").val().length || 0 == $("#password").val().length) {
+                $("span.errorMessage").html("请输入账号密码");
+                $("div.loginErrorMessageDiv").show();
+                return false;
+            }
+            return true;
+        });
+
+        $("form.loginForm input").keyup(function () {
+            $("div.loginErrorMessageDiv").hide();
+        });
+
+        var left = window.innerWidth / 2 + 162;
+        $("div.loginSmallDiv").css("left", left);
+    })
+</script>

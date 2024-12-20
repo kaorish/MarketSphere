@@ -21,7 +21,6 @@
                 <td width="100px">交易操作</td>
             </tr>
         </table>
-
     </div>
 
     <div class="orderListItem">
@@ -99,8 +98,6 @@
 
                                 <c:if test="${o.status=='waitDelivery' }">
                                     <span>待发货</span>
-                                    <%--                                     <button class="btn btn-info btn-sm ask2delivery" link="admin_order_delivery?id=${o.id}">催卖家发货</button> --%>
-
                                 </c:if>
 
                                 <c:if test="${o.status=='waitReview' }">
@@ -129,8 +126,7 @@
             var orderStatus = $(this).attr("orderStatus");
             if ('all' == orderStatus) {
                 $("table[orderStatus]").show();
-            }
-            else {
+            } else {
                 $("table[orderStatus]").hide();
                 $("table[orderStatus=" + orderStatus + "]").show();
             }
@@ -159,8 +155,7 @@
                     function (result) {
                         if ("success" == result) {
                             $("table.orderListItemTable[oid=" + deleteOrderid + "]").hide();
-                        }
-                        else {
+                        } else {
                             location.href = "login.jsp";
                         }
                     }
@@ -168,19 +163,5 @@
 
             }
         });
-
-        $(".ask2delivery").click(function () {
-            var link = $(this).attr("link");
-            $(this).hide();
-            page = link;
-            $.ajax({
-                url: page,
-                success: function (result) {
-                    alert("卖家已秒发，刷新当前页面，即可进行确认收货")
-                }
-            });
-
-        });
     });
-
 </script>

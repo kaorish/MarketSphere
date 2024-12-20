@@ -14,12 +14,11 @@
                 ${fn:substring(p.name, 0, 50)}
         </a>
 
-        <a class="tmallLink" href="foreproduct?pid=${p.id}">天猫专卖</a>
+        <a class="marketSphereLink" href="foreproduct?pid=${p.id}">MarketSphere专卖</a>
 
         <div class="productInfo">
             <span class="monthDeal ">月成交 <span class="productDealNumber">${p.saleCount}笔</span></span>
             <span class="productReview">评价<span class="productReviewNumber">${p.reviewCount}</span></span>
-            <span class="wangwang"><img src="img/site/wangwang.png"></span>
         </div>
 
     </div>
