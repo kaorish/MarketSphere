@@ -79,7 +79,7 @@ public class UserDAO {
 
     public void add(User bean) {
 
-        String sql = "insert into user values(null ,? ,?, ?, ?)";
+        String sql = "INSERT INTO user (name, password, salt, phone) VALUES (?, ?, ?, ?)";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, bean.getName());

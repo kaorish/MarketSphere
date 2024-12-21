@@ -10,6 +10,8 @@
         /* 全局样式 */
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         html, body {
@@ -26,7 +28,7 @@
         #container {
             display: flex;
             flex-direction: column;
-            height: 100%;
+            height: 96%;
             width: 100%;
         }
 
@@ -50,9 +52,7 @@
             border-radius: 8px;
             margin-right: 10px;
             box-sizing: border-box;
-            /* 允许聊天内容区域滚动 */
-            display: flex;
-            flex-direction: column;
+            overflow: hidden; /* 允许内部区域滚动 */
         }
 
         /* 消息列表 */
@@ -85,6 +85,12 @@
             align-items: center;
             gap: 10px; /* 用户名和时间戳之间的间距 */
             margin-bottom: 5px; /* 与消息气泡的间距 */
+            justify-content: flex-start; /* 默认左对齐 */
+        }
+
+        /* 当前用户发送的消息，右对齐消息头部 */
+        .message-container.self .message-header {
+            justify-content: flex-end;
         }
 
         .message-header .username {
@@ -106,14 +112,14 @@
 
         /* 消息气泡 */
         .message {
-            padding: 10px 15px;
+            padding: 8px 12px; /* 减少水平和垂直内边距以适应内容 */
             border-radius: 10px;
             background-color: #e1ffc7;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             word-wrap: break-word;
-            /* 移除固定高度，确保高度自适应 */
-            /* 确保气泡宽度根据内容自适应 */
             white-space: pre-wrap; /* 保留换行符 */
+            display: inline-block; /* 使气泡根据内容自适应宽度 */
+            max-width: 100%; /* 允许气泡最大宽度为容器宽度 */
         }
 
         .message.self {
@@ -140,12 +146,11 @@
             margin-top: 0;
             color: #ffc107;
             text-align: center;
+            margin-bottom: 10px;
         }
 
         #sidebar ul {
             list-style-type: none;
-            padding-left: 0;
-            margin: 0;
         }
 
         #sidebar ul li {
@@ -275,12 +280,8 @@
 </div>
 
 <script>
-    // 当前登录的用户名（需要从后端传递，如果有）
-    // 示例中暂时未实现，所有消息左对齐
-    // 若需要区分当前用户，可以在后端传递当前用户名，并在渲染时添加 .self 类
-
-    // 假设有一个变量 currentUser 存储当前用户名
-    const currentUser = '当前用户'; // 需要从后端传递
+    // 从会话中获取当前用户名
+    const currentUser = '<%= session.getAttribute("username") != null ? session.getAttribute("username").toString() : "未知用户" %>';
 
     // 初始化函数
     function init() {
@@ -309,9 +310,9 @@
             .catch(err => console.error('Error fetching online users:', err));
     }
 
-    // 更新聊天消息
+    // 更新聊天消息，返回 Promise 以便后续操作
     function updateMessages() {
-        fetch('/foregetMessages')
+        return fetch('/foregetMessages')
             .then(response => response.json())
             .then(data => {
                 const messagesContainer = document.getElementById('messages');
@@ -363,6 +364,11 @@
                     contentElement.textContent = content;
                     messageBubble.appendChild(contentElement);
 
+                    // 如果是当前用户，添加 .self 类以改变气泡颜色
+                    if (username === currentUser) {
+                        messageBubble.classList.add('self');
+                    }
+
                     messageContainer.appendChild(messageBubble);
 
                     messagesContainer.appendChild(messageContainer);
@@ -371,8 +377,8 @@
                     console.log('Appended messageContainer:', messageContainer);
                 });
 
-                // 自动滚动到底部
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                // 不自动滚动到最底部
+                // messagesContainer.scrollTop = messagesContainer.scrollHeight;
             })
             .catch(err => {
                 console.error('Error fetching messages:', err);
@@ -417,8 +423,11 @@
                     if (data.success) {
                         messageInput.value = '';
                         messageInput.style.height = '40px'; // 重置高度
-                        updateMessages();
-                        updateSidebar(); // 可选：发送消息后更新在线用户
+                        // 更新消息和在线用户后，滚动到底部
+                        Promise.all([updateMessages(), updateSidebar()])
+                            .then(() => {
+                                scrollToBottom();
+                            });
                     } else {
                         alert(data.message || '发送失败');
                     }
@@ -446,6 +455,12 @@
         const textarea = this;
         textarea.style.height = '40px'; // 重置高度
         textarea.style.height = (textarea.scrollHeight) + 'px';
+    }
+
+    // 滚动到聊天窗口最底部
+    function scrollToBottom() {
+        const messagesContainer = document.getElementById('messages');
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
     // 离开聊天室时通知后端
