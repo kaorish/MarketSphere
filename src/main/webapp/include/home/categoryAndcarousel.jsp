@@ -1,6 +1,51 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
+<%--此页面是一个大盒子，里面包住了分类菜单，轮播图，以及分类下的具体商品--%>
+
+<%--<img src="img/site/catear.png" id="catear" class="catear"/>--%>
+
+<div class="categoryWithCarousel">
+
+    <div class="headbar show1">
+        <div class="head ">
+
+            <span style="margin-left:10px" class="glyphicon glyphicon-th-list"></span>
+            <span style="margin-left:10px">商品分类</span>
+
+        </div>
+
+        <div class="rightMenu">
+
+            <c:forEach items="${categories}" var="category" varStatus="st">
+                <c:if test="${st.count<=7}">
+                <span>
+                <a href="forecategory?cid=${category.id}">
+                        ${category.name}
+                </a></span>
+                </c:if>
+            </c:forEach>
+        </div>
+
+    </div>
+
+    <div style="position: relative">
+        <%@include file="categoryMenu.jsp" %>
+    </div>
+
+<%--    鼠标移到分类项时会动态显示、会挡住轮播图的那个盒子，显示里面具体有哪些商品--%>
+    <div style="position: relative;left: 0;top: 0;">
+        <%@include file="productsAsideCategories.jsp" %>
+    </div>
+
+<%--    里面全是js代码--%>
+    <%@include file="carousel.jsp" %>
+
+    <div class="carouselBackgroundDiv">
+    </div>
+
+</div>
+
 <script>
     function showProductsAsideCategorys(cid) {
         $("div.eachCategory[cid=" + cid + "]").css("background-color", "white");
@@ -53,44 +98,3 @@
 
     });
 </script>
-
-<%--<img src="img/site/catear.png" id="catear" class="catear"/>--%>
-
-<div class="categoryWithCarousel">
-
-    <div class="headbar show1">
-        <div class="head ">
-
-            <span style="margin-left:10px" class="glyphicon glyphicon-th-list"></span>
-            <span style="margin-left:10px">商品分类</span>
-
-        </div>
-
-        <div class="rightMenu">
-
-            <c:forEach items="${categories}" var="category" varStatus="st">
-                <c:if test="${st.count<=8}">
-                <span>
-                <a href="forecategory?cid=${category.id}">
-                        ${category.name}
-                </a></span>
-                </c:if>
-            </c:forEach>
-        </div>
-
-    </div>
-
-    <div style="position: relative">
-        <%@include file="categoryMenu.jsp" %>
-    </div>
-
-    <div style="position: relative;left: 0;top: 0;">
-        <%@include file="productsAsideCategories.jsp" %>
-    </div>
-
-    <%@include file="carousel.jsp" %>
-
-    <div class="carouselBackgroundDiv">
-    </div>
-
-</div>

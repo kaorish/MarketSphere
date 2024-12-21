@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
+<%--此页面是首页的主体，也就是在轮播图下方的很长很长的页面部分。用循环把每个分类的前5个产品显示出来，每个分类一行，一直循环下去，所以页面可以一直往下滚动。--%>
+
 <c:if test="${empty param.categorycount}">
     <c:set var="categorycount" scope="page" value="100"/>
 </c:if>

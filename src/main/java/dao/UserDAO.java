@@ -10,6 +10,38 @@ import java.util.List;
 
 public class UserDAO {
 
+    public void setOnlineStatus(int userId, boolean isOnline) {
+        String sql = "UPDATE user SET is_online = ? WHERE id = ?";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setBoolean(1, isOnline);
+            ps.setInt(2, userId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<User> getOnlineUsers() {
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT id, name FROM user WHERE is_online = TRUE";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+
+
     private User getUser(ResultSet rs) throws SQLException {
         User bean = new User();
         int id = rs.getInt("id");
@@ -22,6 +54,8 @@ public class UserDAO {
         bean.setSalt(salt);
         String phone = rs.getString("phone");
         bean.setPhone(phone);
+        boolean isOnline = rs.getBoolean("is_online");
+        bean.setOnline(isOnline);
         return bean;
     }
 
@@ -73,8 +107,8 @@ public class UserDAO {
 
             ps.setString(1, bean.getName());
             ps.setString(2, bean.getPassword());
-            ps.setInt(3, bean.getId());
-            ps.setString(4, bean.getPhone());
+            ps.setString(3, bean.getPhone());
+            ps.setInt(4, bean.getId());
 
             ps.execute();
 
@@ -184,6 +218,5 @@ public class UserDAO {
     public boolean isExist(String name) {
         User user = get(name);
         return user != null;
-
     }
 }

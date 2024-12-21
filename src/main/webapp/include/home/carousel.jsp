@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
+<%--此页面也就是那个轮播图--%>
+
 <div id="carousel-of-product" class="carousel-of-product carousel slide1" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">

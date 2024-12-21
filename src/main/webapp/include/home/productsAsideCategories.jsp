@@ -1,16 +1,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
-<script>
-    $(function () {
-        $("div.productsAsideCategorys div.row a").each(function () {
-            var v = Math.round(Math.random() * 6);
-            if (v == 1)
-                $(this).css("color", "#87CEFA");
-        });
-    });
+<%--此页面是鼠标移动到商品分类上时，显示的商品分类的具体内容，会挡住轮播图的那个盒子--%>
 
-</script>
 <c:forEach items="${categories}" var="category">
     <div cid="${category.id}" class="productsAsideCategorys">
 
@@ -32,3 +24,14 @@
         </c:forEach>
     </div>
 </c:forEach>
+
+<script>
+    $(function () {
+        $("div.productsAsideCategorys div.row a").each(function () {
+            var v = Math.round(Math.random() * 6);
+            if (v == 1)
+                $(this).css("color", "#87CEFA");
+        });
+    });
+
+</script>

@@ -6,6 +6,15 @@ public class User {
     private String name;
     private String salt;
     private String phone;
+    private boolean isOnline;
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean online) {
+        isOnline = online;
+    }
 
     public String getPhone() {
         return phone;

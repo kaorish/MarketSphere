@@ -1,11 +1,8 @@
 package servlet;
 
+import dao.*;
 import org.apache.commons.lang.math.RandomUtils;
 import bean.*;
-import dao.CategoryDAO;
-import dao.OrderDAO;
-import dao.ProductDAO;
-import dao.ProductImageDAO;
 import org.springframework.web.util.HtmlUtils;
 import util.HttpUtils;
 import util.Page;
@@ -25,11 +22,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class ForeServlet extends BaseForeServlet {
 
-    // 从DAO中获取数据，然后再将数据传递给 JSP 文件，也就是页面跳转到home.jsp并将图片展示出来
+    // 从CategoryDAO中获取数据，然后再将数据传递给 JSP 文件，也就是页面跳转到home.jsp并将图片展示出来，因为页面需要用循环来展示商品和图片
     public String home(HttpServletRequest request, HttpServletResponse response, Page page) {
         List<Category> categories = new CategoryDAO().list();
         new ProductDAO().fill(categories);
@@ -233,7 +233,9 @@ public class ForeServlet extends BaseForeServlet {
         }
 
         // 登录成功
+        //将用户存储到 Session
         request.getSession().setAttribute("user", user);
+
         // 重定向到首页，这里一定要用@forehome，因为要被过滤器拦截，然后加上必要的参数，这样才能正确显示商品的各种图片等等信息
         // 如果填@home.jsp或home.jsp，那么就是直接重定向回home.jsp，就会缺失这些信息，和在浏览器中直接输入没啥区别，不能正常显示
         return "@forehome";
@@ -278,7 +280,11 @@ public class ForeServlet extends BaseForeServlet {
 
 
     public String logout(HttpServletRequest request, HttpServletResponse response, Page page) {
-        request.getSession().removeAttribute("user");
+        User user = (User) request.getSession().getAttribute("user");
+        if (user != null) {
+            // 移除 Session 中的用户信息
+            request.getSession().removeAttribute("user");
+        }
         return "@forehome";
     }
 
@@ -610,4 +616,152 @@ public class ForeServlet extends BaseForeServlet {
 
         return "@forereview?oid=" + oid + "&showonly=true";
     }
+
+    // 进入聊天室页面
+    public String chat(HttpServletRequest request, HttpServletResponse response, Page page) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user != null) {
+            // 设置用户在线状态
+            userDAO.setOnlineStatus(user.getId(), true);
+        }
+        return "chat.jsp";
+    }
+
+    // 离开聊天室，设置为离线状态
+    public String leaveChat(HttpServletRequest request, HttpServletResponse response, Page page) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user != null) {
+            // 设置用户离线状态
+            userDAO.setOnlineStatus(user.getId(), false);
+        }
+        return "@forehome"; // 重定向回首页
+    }
+
+    // 获取在线用户列表
+    public String getOnlineUsers(HttpServletRequest request, HttpServletResponse response, Page page) {
+        response.setContentType("application/json;charset=UTF-8");
+        try {
+            List<User> onlineUsers = userDAO.getOnlineUsers();
+            StringBuilder jsonBuilder = new StringBuilder();
+            jsonBuilder.append("{\"onlineCount\":").append(onlineUsers.size()).append(",\"users\":[");
+            for (int i = 0; i < onlineUsers.size(); i++) {
+                User user = onlineUsers.get(i);
+                jsonBuilder.append("\"").append(user.getName()).append("\"");
+                if (i < onlineUsers.size() - 1) {
+                    jsonBuilder.append(",");
+                }
+            }
+            jsonBuilder.append("]}");
+            PrintWriter writer = response.getWriter();
+            String jsonResponse = jsonBuilder.toString();
+            writer.write(jsonResponse);
+            writer.flush(); // 刷新流
+            writer.close(); // 明确关闭流
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(500); // 设置 HTTP 状态码为 500
+        }
+        return null; // AJAX 请求不返回页面
+    }
+
+
+    // 获取最近的聊天记录
+    public String getMessages(HttpServletRequest request, HttpServletResponse response, Page page) {
+        response.setContentType("application/json;charset=UTF-8");
+        MessageDAO messageDAO = new MessageDAO();
+        try {
+            int limit = 50; // 默认获取最近 50 条消息
+            List<Message> messages = messageDAO.getRecentMessages(limit);
+            // 确保消息按照时间顺序排列（最早的在前，最新的在后）
+            messages.sort(Comparator.comparing(Message::getTimestamp));
+
+            // 使用DateTimeFormatter格式化时间为ISO 8601
+            DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+
+            StringBuilder jsonBuilder = new StringBuilder();
+            jsonBuilder.append("{\"messages\":[");
+            for (int i = 0; i < messages.size(); i++) {
+                Message message = messages.get(i);
+                ZonedDateTime zdt = ZonedDateTime.ofInstant(message.getTimestamp().toInstant(), ZoneId.systemDefault());
+                String formattedTimestamp = zdt.format(formatter);
+
+                jsonBuilder.append("{")
+                        .append("\"username\":\"").append(escapeJSON(message.getUsername())).append("\",")
+                        .append("\"content\":\"").append(escapeJSON(message.getContent())).append("\",")
+                        .append("\"timestamp\":\"").append(formattedTimestamp).append("\"")
+                        .append("}");
+                if (i < messages.size() - 1) {
+                    jsonBuilder.append(",");
+                }
+            }
+            jsonBuilder.append("]}");
+            PrintWriter writer = response.getWriter();
+            String jsonResponse = jsonBuilder.toString();
+            writer.write(jsonResponse);
+            writer.flush(); // 刷新流
+            writer.close(); // 明确关闭流
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(500); // 设置 HTTP 状态码为 500
+        }
+        return null; // AJAX 请求不返回页面
+    }
+
+    // 辅助方法：转义JSON特殊字符
+    private String escapeJSON(String str) {
+        if (str == null) return "";
+        return str.replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("/", "\\/")
+                .replace("\b", "\\b")
+                .replace("\f", "\\f")
+                .replace("\n", "\\n")
+                .replace("\r", "\\r")
+                .replace("\t", "\\t");
+    }
+
+
+    // 发送消息
+    public String sendMessage(HttpServletRequest request, HttpServletResponse response, Page page) {
+        response.setContentType("application/json;charset=UTF-8");
+        MessageDAO MessageDAO = new MessageDAO();
+        try {
+            User user = (User) request.getSession().getAttribute("user");
+            if (user != null) {
+                String content = request.getParameter("content");
+                if (content != null && !content.trim().isEmpty()) {
+                    Message message = new Message();
+                    message.setUserId(user.getId());
+                    message.setUsername(user.getName());
+                    message.setContent(content.trim());
+                    message.setTimestamp(new Date());
+
+                    MessageDAO.addMessage(message);
+                    String jsonResponse = "{\"success\":true}";
+                    PrintWriter writer = response.getWriter();
+                    writer.write(jsonResponse);
+                    writer.flush(); // 刷新流
+                    writer.close(); // 明确关闭流
+                } else {
+                    String jsonResponse = "{\"success\":false,\"message\":\"消息内容不能为空\"}";
+                    PrintWriter writer = response.getWriter();
+                    writer.write(jsonResponse);
+                    writer.flush(); // 刷新流
+                    writer.close(); // 明确关闭流
+                }
+            } else {
+                String jsonResponse = "{\"success\":false,\"message\":\"用户未登录\"}";
+                PrintWriter writer = response.getWriter();
+                writer.write(jsonResponse);
+                writer.flush(); // 刷新流
+                writer.close(); // 明确关闭流
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(500);
+        }
+        return null;
+    }
+
+
 }
