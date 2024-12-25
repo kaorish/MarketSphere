@@ -5,23 +5,6 @@
 <%@include file="../include/admin/adminHeader.jsp" %>
 <%@include file="../include/admin/adminNavigator.jsp" %>
 
-<script>
-    $(function () {
-        $(".addFormSingle").submit(function () {
-            if (checkEmpty("filepathSingle", "图片文件")) {
-                $("#filepathSingle").value("");
-                return true;
-            }
-            return false;
-        });
-        $(".addFormDetail").submit(function () {
-            if (checkEmpty("filepathDetail", "图片文件"))
-                return true;
-            return false;
-        });
-    });
-
-</script>
 
 <title>产品图片管理</title>
 
@@ -149,3 +132,21 @@
 </div>
 
 <%@include file="../include/admin/adminFooter.jsp" %>
+
+<script>
+    $(function () {
+        $(".addFormSingle").submit(function () {
+            if (checkEmpty("filepathSingle", "图片文件")) {
+                $("#filepathSingle").value("");
+                return true;
+            }
+            return false;
+        });
+        $(".addFormDetail").submit(function () {
+            if (checkEmpty("filepathDetail", "图片文件"))
+                return true;
+            return false;
+        });
+    });
+
+</script>

@@ -9,18 +9,7 @@
 <title>编辑分类</title>
 
 
-<script>
-    $(function () {
 
-        $("#editForm").submit(function () {
-            if (!checkEmpty("name", "分类名称"))
-                return false;
-
-            return true;
-        });
-    });
-
-</script>
 
 <div class="workingArea">
 
@@ -55,3 +44,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(function () {
+
+        $("#editForm").submit(function () {
+            if (!checkEmpty("name", "分类名称"))
+                return false;
+
+            return true;
+        });
+    });
+
+</script>

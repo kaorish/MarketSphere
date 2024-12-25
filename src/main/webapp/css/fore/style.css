@@ -1174,21 +1174,7 @@ a.marketLink:hover {
     font-weight: normal;
 }
 
-span.wangwangGif {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    background-image: url(../../img/site/wangwang.gif);
-    background-repeat: no-repeat;
-    background-color: transparent;
-    background-attachment: scroll;
-    background-position: -83px -0px;
-    position: relative;
-    top: 8px;
-    left: 2px;
-}
-
-table.productListTable {
+ table.productListTable {
     width: 100%;
     border-collapse: separate;
 }
@@ -1415,7 +1401,6 @@ div.payedAddressInfo li {
     color: #333333;
     padding-left: 15px;
     padding-top: 5px;
-    /* 	background: rgba(0, 0, 0, 0) url("../../img/site/li_dot.png") no-repeat scroll 0 13px; */
 }
 
 span.payedInfoPrice {
@@ -1675,20 +1660,6 @@ table.orderListItemTable td {
     padding: 8px 10px;
 }
 
-div.orderItemWangWangGif {
-    display: inline-block;
-    width: 67px;
-    height: 22px;
-    background-image: url(../../img/site/wangwang.gif);
-    background-repeat: no-repeat;
-    background-color: transparent;
-    background-attachment: scroll;
-    background-position: -0px -0px;
-    position: relative;
-    top: 0px;
-    left: 2px;
-}
-
 span.orderListItemDelete {
     display: inline-block;
     margin: 0px 10px;
@@ -1886,19 +1857,6 @@ div.confirmPayOrderDetailDiv {
     margin: 40px;
 }
 
-span.confirmPayOrderDetailWangWangGif {
-    display: inline-block;
-    width: 67px;
-    height: 22px;
-    background-image: url(../../img/site/wangwang.gif);
-    background-repeat: no-repeat;
-    background-color: transparent;
-    background-attachment: scroll;
-    background-position: -0px -0px;
-    position: relative;
-    top: 0px;
-    left: 2px;
-}
 
 div.confirmPayButtonDiv {
     border: 1px solid #F58B0F;

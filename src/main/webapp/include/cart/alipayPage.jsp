@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
+<title>支付页</title>
+
 <div class="aliPayPageDiv">
     <div class="aliPayPageLogo">
         <a href="${contextPath}">

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
+<title>确认收货</title>
+
 <div class="confirmPayPageDiv">
     <div class="confirmPayImageDiv">
         <img src="img/site/comformPayFlow.png">

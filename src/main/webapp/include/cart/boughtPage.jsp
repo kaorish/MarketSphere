@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
+<%--此页面是订单页，即top栏的“我的订单”--%>
+<title>我的订单</title>
+
 <div class="boughtDiv">
     <div class="orderType">
         <div class="selectedOrderType"><a orderStatus="all" href="#">所有订单</a></div>

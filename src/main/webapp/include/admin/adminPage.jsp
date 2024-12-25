@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
-
-<script>
-    $(function () {
-        $("ul.pagination li.disabled a").click(function () {
-            return false;
-        });
-    });
-
-</script>
-
 <nav>
     <ul class="pagination">
         <li <c:if test="${!page.hasPreviouse}">class="disabled"</c:if>>
@@ -49,3 +39,13 @@
         </li>
     </ul>
 </nav>
+
+<script>
+    $(function () {
+        $("ul.pagination li.disabled a").click(function () {
+            return false;
+        });
+    });
+
+</script>
+

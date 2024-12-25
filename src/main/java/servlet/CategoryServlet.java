@@ -37,7 +37,7 @@ public class CategoryServlet extends BaseBackServlet {
 
         // 定义运行时路径和源代码路径
         String runtimePath = request.getSession().getServletContext().getRealPath("img/category");
-        String sourcePath = "D:/Code/Web/MarketSphere/src/main/webapp/img/category"; // 修改为你的源代码路径
+        String sourcePath = "D:/Code/Web/MarketSphere/src/main/webapp/img/category"; // 修改为源代码路径
 
         File runtimeFolder = new File(runtimePath);
         if (!runtimeFolder.exists()) {

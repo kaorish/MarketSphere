@@ -398,7 +398,7 @@ public class ForeServlet extends BaseForeServlet {
         int orderItemId = 0;
 
         User user = (User) request.getSession().getAttribute("user");
-        //遍历此用户对应的所有订单项，如果其产品id等于p.getId()，就对对应订单项的数量追加
+        //遍历此用户对应的所有订单项，如果其产品id等于p.getId()，就对对应订单项的数量追加，也就是再买一件然后结账
         boolean found = false;
         List<OrderItem> orderItems = orderItemDAO.listByUser(user.getId());
         for (OrderItem orderItem : orderItems) {

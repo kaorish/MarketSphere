@@ -7,21 +7,7 @@
 
 <title>编辑产品</title>
 
-<script>
-    $(function () {
-        $("#editForm").submit(function () {
-            if (!checkEmpty("name", "产品名称"))
-                return false;
-            if (!checkNumber("originalPrice", "原价格"))
-                return false;
-            if (!checkNumber("promotePrice", "优惠价格"))
-                return false;
-            if (!checkInt("stock", "库存"))
-                return false;
-            return true;
-        });
-    });
-</script>
+
 
 <div class="workingArea">
     <ol class="breadcrumb">
@@ -75,3 +61,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(function () {
+        $("#editForm").submit(function () {
+            if (!checkEmpty("name", "产品名称"))
+                return false;
+            if (!checkNumber("originalPrice", "原价格"))
+                return false;
+            if (!checkNumber("promotePrice", "优惠价格"))
+                return false;
+            if (!checkInt("stock", "库存"))
+                return false;
+            return true;
+        });
+    });
+</script>

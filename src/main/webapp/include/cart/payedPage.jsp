@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
+<title>支付成功</title>
+
 <div class="payedDiv">
     <div class="payedTextDiv">
         <img src="img/site/paySuccess.png">

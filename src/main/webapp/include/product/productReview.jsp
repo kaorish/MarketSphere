@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
+<%--当点击页面上的“累计评价”链接时，页面会发送AJAX请求到后端Servlet，获取评价数据，并更新页面的部分内容，
+将商品详情图片替换为评价列表。这样，其他部分都不变，仅仅是商品详情图片变成了评价列表。--%>
+
 <div class="productReviewDiv">
     <div class="productReviewTopPart">
         <a href="#" class="productReviewTopPartSelectedLink">商品详情</a>

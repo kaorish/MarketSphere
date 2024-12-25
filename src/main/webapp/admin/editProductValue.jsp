@@ -7,6 +7,28 @@
 
 <title>编辑产品属性值</title>
 
+
+
+<div class="workingArea">
+    <ol class="breadcrumb">
+        <li><a href="admin_category_list">所有分类</a></li>
+        <li><a href="admin_product_list?cid=${p.category.id}">${p.category.name}</a></li>
+        <li class="active">${p.name}</li>
+        <li class="active">编辑产品属性</li>
+    </ol>
+
+    <div class="editPVDiv">
+        <c:forEach items="${pvs}" var="pv">
+            <div class="eachPV">
+                <span class="pvName">${pv.property.name}</span>
+                <span class="pvValue"><input class="pvValue" pvid="${pv.id}" type="text" value="${pv.value}"></span>
+            </div>
+        </c:forEach>
+        <div style="clear:both"></div>
+    </div>
+
+</div>
+
 <script>
     $(function () {
         $("input.pvValue").keyup(function () {
@@ -28,23 +50,3 @@
         });
     });
 </script>
-
-<div class="workingArea">
-    <ol class="breadcrumb">
-        <li><a href="admin_category_list">所有分类</a></li>
-        <li><a href="admin_product_list?cid=${p.category.id}">${p.category.name}</a></li>
-        <li class="active">${p.name}</li>
-        <li class="active">编辑产品属性</li>
-    </ol>
-
-    <div class="editPVDiv">
-        <c:forEach items="${pvs}" var="pv">
-            <div class="eachPV">
-                <span class="pvName">${pv.property.name}</span>
-                <span class="pvValue"><input class="pvValue" pvid="${pv.id}" type="text" value="${pv.value}"></span>
-            </div>
-        </c:forEach>
-        <div style="clear:both"></div>
-    </div>
-
-</div>
