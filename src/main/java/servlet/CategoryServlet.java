@@ -142,7 +142,7 @@ public class CategoryServlet extends BaseBackServlet {
     }
 
 
-    // 转发至分类管理页面
+    // 转发至分类管理页面，由于后台没有特定制作首页，所以直接用分类管理页面作为首页，也就是调用此方法
     public String list(HttpServletRequest request, HttpServletResponse response, Page page) {
         List<Category> categories = categoryDAO.list(page.getStart(), page.getCount());
         int total = categoryDAO.getTotal();

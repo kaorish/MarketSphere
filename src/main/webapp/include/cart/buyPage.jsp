@@ -4,7 +4,9 @@
     <form action="forecreateOrder" method="post">
 
         <div class="buyFlow">
-<%--            <img class="pull-left" src="img/site/simpleLogo.png">--%>
+            <a href="${contextPath}">
+                <img id="simpleLogo" src="img/site/logo.jpg" class="simpleLogo">
+            </a>
             <img class="pull-right" src="img/site/buyflow.png">
             <div style="clear:both"></div>
         </div>
@@ -42,7 +44,6 @@
                 <thead>
                 <tr>
                     <th colspan="2" class="productListTableFirstColumn">
-                        <img class="marketSpherebuy" src="img/site/marketSpherebuy.png">
                         <a class="marketLink" href="#">店铺：MarketSphere店铺</a>
                         <a class="wangwanglink" href="#"> <span class="wangwangGif"></span> </a>
                     </th>

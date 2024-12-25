@@ -17,6 +17,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 此Servlet和前端逻辑的BaseForeServlet很类似，都是用来拦截请求然后根据请求类型进行转发的，只不过这里除了转发还定义了文件上传的方法，用于后端管理
+ * 对于后端请求，也和前端一样分为三种，由于BaseForeServlet已经写的很清楚，这里就不再赘述了
+ */
+
 public abstract class BaseBackServlet extends HttpServlet {
 
     public abstract String add(HttpServletRequest request, HttpServletResponse response, Page page);
@@ -114,6 +119,4 @@ public abstract class BaseBackServlet extends HttpServlet {
         }
         return is;
     }
-
-
 }

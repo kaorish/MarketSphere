@@ -69,7 +69,7 @@
                 <table class="makeReviewTable">
                     <tr>
                         <td class="makeReviewTableFirstTD">评价商品</td>
-                        <td><textarea name="content"></textarea></td>
+                        <td><textarea name="content" style="outline: none"></textarea></td>
                     </tr>
                 </table>
                 <div class="makeReviewButtonDiv">

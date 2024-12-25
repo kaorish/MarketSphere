@@ -5,12 +5,6 @@
 
 <div id="footer" class="footer" style="display: block;">
 
-    <div id="footer_ensure" class="footer_ensure">
-        <a href="#">
-            <img src="img/site/ensure.png">
-        </a>
-    </div>
-
     <div id="footer_desc" class="footer_desc">
         <div class="descColumn">
             <span class="descColumnTitle">购物指南</span>

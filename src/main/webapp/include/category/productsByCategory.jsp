@@ -28,12 +28,6 @@
                     <div class="show1 productInfo">
                         <span class="monthDeal ">月成交 <span class="productDealNumber">${p.saleCount}笔</span></span>
                         <span class="productReview">评价<span class="productReviewNumber">${p.reviewCount}</span></span>
-                        <span class="wangwang">
-                    <a class="wangwanglink" href="#">
-                        <img src="img/site/wangwang.png">
-                    </a>
-
-                    </span>
                     </div>
                 </div>
             </div>

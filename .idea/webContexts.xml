@@ -7,7 +7,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/include/cart/cartPage.jsp" value="file://$PROJECT_DIR$/src/main/webapp/include/cart" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/include/chat/chatPage.jsp" value="file://$PROJECT_DIR$/src/main/webapp/include/chat" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/include/productsBySearch.jsp" value="file://$PROJECT_DIR$/src/main/webapp/include" />
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/include/registerPage.jsp" value="file://$PROJECT_DIR$/src/main/webapp/include" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/include/registerPage.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>
     </option>
   </component>

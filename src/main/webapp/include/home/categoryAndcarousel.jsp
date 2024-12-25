@@ -3,8 +3,6 @@
 
 <%--此页面是一个大盒子，里面包住了分类菜单，轮播图，以及分类下的具体商品--%>
 
-<%--<img src="img/site/catear.png" id="catear" class="catear"/>--%>
-
 <div class="categoryWithCarousel">
 
     <div class="headbar show1">

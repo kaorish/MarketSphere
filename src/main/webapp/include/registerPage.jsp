@@ -2,6 +2,14 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 
+<a href="/forehome">
+    <img id="simpleLogo" src="img/site/logo.jpg" class="simpleLogo">
+</a>
+
+<div class="bg" style="float: right; width: 380px; margin-right: 300px; margin-top: 65px">
+    <img src="img/site/register.jpg" class="registerImg" style="width: 100%">
+</div>
+
 <form method="post" action="foreregister" class="registerForm">
 
     <div class="registerDiv">
@@ -12,14 +20,14 @@
             </div>
         </div>
 
-        <table class="registerTable" align="center">
+        <table class="registerTable" align="center" style="padding-left: 300px">
             <tr>
                 <td class="registerTip registerTableLeftTD">设置会员名</td>
                 <td></td>
             </tr>
             <tr>
                 <td class="registerTableLeftTD">登陆名</td>
-                <td class="registerTableRightTD"><input id="name" name="name" placeholder="会员名一旦设置成功，无法修改"></td>
+                <td class="registerTableRightTD"><input id="name" name="name" placeholder="请设置你的用户名" style="outline: none; padding-left: 10px"></td>
             </tr>
             <tr>
                 <td class="registerTip registerTableLeftTD">设置登陆密码</td>
@@ -28,17 +36,17 @@
             <tr>
                 <td class="registerTableLeftTD">登陆密码</td>
                 <td class="registerTableRightTD"><input id="password" name="password" type="password"
-                                                        placeholder="设置你的登陆密码"></td>
+                                                        placeholder="设置你的登陆密码" style="outline: none; padding-left: 10px"></td>
             </tr>
             <tr>
                 <td class="registerTableLeftTD">密码确认</td>
-                <td class="registerTableRightTD"><input id="repeatpassword" type="password" placeholder="请再次输入你的密码">
+                <td class="registerTableRightTD"><input id="repeatpassword" type="password" placeholder="请再次输入你的密码" style="outline: none; padding-left: 10px">
                 </td>
             </tr>
 
             <tr>
                 <td class="registerTableLeftTD">手机号</td>
-                <td class="registerTableRightTD"><input type="text" id="phone" name="phone" placeholder="请输入手机号"></td>
+                <td class="registerTableRightTD"><input type="text" id="phone" name="phone" placeholder="请输入手机号" style="outline: none; padding-left: 10px"></td>
             </tr>
             <tr>
                 <td class="registerTableLeftTD"></td>
@@ -48,7 +56,7 @@
             </tr>
             <tr>
                 <td class="registerTableLeftTD">验证码</td>
-                <td class="registerTableRightTD"><input type="text" id="verificationCode" name="verificationCode" placeholder="请输入验证码"></td>
+                <td class="registerTableRightTD"><input type="text" id="verificationCode" name="verificationCode" placeholder="请输入验证码" style="outline: none; padding-left: 10px"></td>
             </tr>
 
             <tr>
@@ -118,7 +126,6 @@
             dataType: "json",
             success: function (data) {
                 if (data.success) {
-                    alert("验证码正确");
                     callback(true); // Verification successful
                 } else {
                     $("span.errorMessage").html("验证码错误");

@@ -2,7 +2,7 @@
          pageEncoding="UTF-8" isELIgnored="false" %>
 
 <a href="${contextPath}">
-<%--    <img id="logo" src="img/site/logo.gif" class="logo">--%>
+    <img id="simpleLogo" src="img/site/logo.jpg" class="simpleLogo">
 </a>
 
 <form action="foresearch" method="post">

@@ -3,12 +3,10 @@
 
 
 <div id="loginDiv" style="position: relative">
-
-<%--    <div class="simpleLogo">--%>
-<%--        <a href="#"><img src="img/site/simpleLogo.png"></a>--%>
-<%--    </div>--%>
-
-    <img id="loginBackgroundImg" class="loginBackgroundImg" src="img/site/loginBackground.png">
+    <a href="/forehome">
+        <img id="simpleLogo" src="img/site/logo.jpg" class="simpleLogo">
+    </a>
+    <img id="loginBackgroundImg" class="loginBackgroundImg" src="img/site/loginBackground.jpg" style="width: 1422px; height: 600px">
 
     <form class="loginForm" action="forelogin" method="post">
         <div id="loginSmallDiv" class="loginSmallDiv">
@@ -24,14 +22,14 @@
                 <span class="loginInputIcon ">
                     <span class=" glyphicon glyphicon-user"></span>
                 </span>
-                <input id="name" name="name" placeholder="手机/会员名/邮箱" type="text">
+                <input id="name" name="name" placeholder="手机/会员名/邮箱" type="text" style="outline: none">
             </div>
 
             <div class="loginInput ">
                 <span class="loginInputIcon ">
                     <span class=" glyphicon glyphicon-lock"></span>
                 </span>
-                <input id="password" name="password" type="password" placeholder="密码" type="text">
+                <input id="password" name="password" type="password" placeholder="密码" type="text" style="outline: none">
             </div>
             <span class="text-danger"></span><br><br>
 

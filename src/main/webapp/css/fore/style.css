@@ -252,6 +252,7 @@ img.logo {
     position: absolute;
     left: 0px;
     top: 30px;
+    width: 100%;
     /* 	z-index:-1; */
 }
 
@@ -637,10 +638,6 @@ div.productUnit span.monthDeal, div.productUnit span.productReview {
     height: 30px;
     padding-top: 5px;
     padding-left: 5px;
-}
-
-div.productUnit span.wangwang {
-    padding-left: 3px;
 }
 
 div.productUnit span.productDealNumber {

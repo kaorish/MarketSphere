@@ -3,7 +3,9 @@
 
 <div class="aliPayPageDiv">
     <div class="aliPayPageLogo">
-<%--        <img class="pull-left" src="img/site/simpleLogo.png">--%>
+        <a href="${contextPath}">
+            <img id="simpleLogo" src="img/site/logo.jpg" class="simpleLogo">
+        </a>
         <div style="clear:both"></div>
     </div>
 
