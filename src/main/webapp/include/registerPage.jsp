@@ -6,15 +6,16 @@
     <img id="simpleLogo" src="img/site/logo.jpg" class="simpleLogo">
 </a>
 
-<div class="bg" style="float: right; width: 380px; margin-right: 300px; margin-top: 65px">
+
+<div class="bg" style="float: right; width: 330px; margin-right: 300px; margin-top: 120px">
     <img src="img/site/register.jpg" class="registerImg" style="width: 100%">
 </div>
 
 <form method="post" action="foreregister" class="registerForm">
 
     <div class="registerDiv">
-        <div class="registerErrorMessageDiv">
-            <div class="alert alert-danger" role="alert">
+        <div class="registerErrorMessageDiv" style="width: 200px;">
+            <div class="alert alert-danger" role="alert" >
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
                 <span class="errorMessage"></span>
             </div>

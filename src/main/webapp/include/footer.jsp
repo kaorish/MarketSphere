@@ -34,7 +34,7 @@
         </div>
         <div class="descColumn">
             <span class="descColumnTitle">手机MarketSphere</span>
-            <a href="#"><img src="img/site/ma.png"></a>
+            <a href="#"><img src="img/site/ma.jpg"></a>
         </div>
 
     </div>
@@ -44,9 +44,9 @@
     <div id="copyright" class="copyright">
         <div class="white_link">
             <a href="#">关于MarketSphere</a>
-            <a href="#"> 帮助中心</a>
+            <a href="#">帮助中心</a>
             <a href="#">开放平台</a>
-            <a href="#"> 诚聘英才</a>
+            <a href="#">诚聘英才</a>
             <a href="#">联系我们</a>
             <a href="#">网站合作</a>
             <a href="#">法律声明</a>

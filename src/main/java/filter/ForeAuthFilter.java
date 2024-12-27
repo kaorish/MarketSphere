@@ -32,6 +32,8 @@ public class ForeAuthFilter implements Filter {
                 "search",
                 "sendCode",
                 "verifyCode",
+                // 打包为war包时，需要添加这行，其余情况应将其注释
+                //"MarketSphere",
         };
         String uri = request.getRequestURI();
         uri = StringUtils.remove(uri, contextPath);

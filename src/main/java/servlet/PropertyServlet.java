@@ -70,7 +70,7 @@ public class PropertyServlet extends BaseBackServlet {
             throw new RuntimeException("Category with id " + cid + " not found!");
         }
 
-        List<Property> ps = propertyDAO.list(cid, page.getStart(), page.getCount());
+        List<Property> ps = propertyDAO.list(cid, page.getStart(), page.getCount()); // ps是properties的缩写，由于前端页面使用的是ps，所以这里也使用ps
         int total = propertyDAO.getTotal(cid);
         page.setTotal(total);
         System.out.println("set total: " + page.getTotal());

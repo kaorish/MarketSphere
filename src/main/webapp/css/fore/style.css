@@ -2163,9 +2163,8 @@ div.reviewStasticsDiv {
 }
 
 div.registerErrorMessageDiv {
-    width: 600px;
-    margin: 0px auto;
-    height: 50px;
+    margin: 20px auto 0px;
+    height: 60px;
     visibility: hidden;
 }
 

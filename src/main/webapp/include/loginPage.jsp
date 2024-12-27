@@ -13,7 +13,7 @@
             <div class="loginErrorMessageDiv">
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-                    <span class="errorMessage"></span>
+                    <span class="errorMessage" style="padding-left: 100px"></span>
                 </div>
             </div>
 

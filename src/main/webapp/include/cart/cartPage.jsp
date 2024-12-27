@@ -87,7 +87,6 @@
     <div class="cartFoot">
         <img selectit="false" class="selectAllItem" src="img/site/cartNotSelected.png">
         <span>全选</span>
-        <!-- 		<a href="#">删除</a> -->
 
         <div class="pull-right">
             <span>已选商品 <span class="cartSumNumber">0</span> 件</span>
